@@ -1,5 +1,8 @@
 FROM docker.redpanda.com/redpandadata/redpanda:v23.2.1
 
+EXPOSE 9092
+EXPOSE 9644
+
 CMD ["redpanda", "start", \
      "--overprovisioned", \
      "--smp", "1", \
@@ -8,4 +11,8 @@ CMD ["redpanda", "start", \
      "--node-id", "0", \
      "--check=false", \
      "--kafka-addr", "PLAINTEXT://0.0.0.0:9092", \
-     "--advertise-kafka-addr", "PLAINTEXT://redpanda:9092"]
+     "--advertise-kafka-addr", "PLAINTEXT://redpanda:9092", \
+     "--pandaproxy-addr", "0.0.0.0:8082", \
+     "--advertise-pandaproxy-addr", "PLAINTEXT://redpanda:8082", \
+     "--rpc-addr", "0.0.0.0:33145", \
+     "--advertise-rpc-addr", "redpanda:33145"]
