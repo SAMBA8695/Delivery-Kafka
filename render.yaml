@@ -4,14 +4,14 @@ services:
     region: singapore
     plan: free
     runtime: docker
-    dockerfilePath: ./redpanda/Dockerfile
+    dockerfilePath: redpanda/Dockerfile
 
   - type: web
     name: order-service
     region: singapore
     plan: free
     runtime: docker
-    dockerfilePath: ./services/order-service/Dockerfile
+    dockerfilePath: services/order-service/Dockerfile
     envVars:
       - key: KAFKA_BROKER
         value: redpanda:9092
@@ -21,7 +21,7 @@ services:
     region: singapore
     plan: free
     runtime: docker
-    dockerfilePath: ./services/location-service/Dockerfile
+    dockerfilePath: services/location-service/Dockerfile
     envVars:
       - key: KAFKA_BROKER
         value: redpanda:9092
@@ -31,7 +31,7 @@ services:
     region: singapore
     plan: free
     runtime: docker
-    dockerfilePath: ./services/notification-service/Dockerfile
+    dockerfilePath: services/notification-service/Dockerfile
     envVars:
       - key: KAFKA_BROKER
         value: redpanda:9092
