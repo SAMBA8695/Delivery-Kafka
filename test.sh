@@ -2,8 +2,8 @@
 # test.sh — simulates a full delivery flow
 # Run this after starting all 3 services and Kafka
 
-BASE_ORDER="http://localhost:8080"
-BASE_LOCATION="http://localhost:8081"
+BASE_ORDER="http://localhost:8090"
+BASE_LOCATION="http://localhost:8091"
 
 echo "=== Creating order ==="
 ORDER=$(curl -s -X POST $BASE_ORDER/orders \
@@ -42,4 +42,4 @@ curl -s -X PATCH $BASE_ORDER/orders/$ORDER_ID \
 echo ""
 echo "=== Connect a WebSocket client to watch live updates ==="
 echo "Run this in another terminal:"
-echo "  wscat -c 'ws://localhost:8082/ws?order_id=$ORDER_ID'"
+echo "  wscat -c 'ws://localhost:8092/ws?order_id=$ORDER_ID'"

@@ -18,7 +18,7 @@ spec:
         - name: location-service
           image: delivery-tracker/location-service:latest
           ports:
-            - containerPort: 8081
+            - containerPort: 8091
           env:
             - name: KAFKA_BROKER
               value: "kafka-service:9092"
@@ -32,13 +32,13 @@ spec:
           livenessProbe:
             httpGet:
               path: /health
-              port: 8081
+              port: 8091
             initialDelaySeconds: 5
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /health
-              port: 8081
+              port: 8091
             initialDelaySeconds: 3
             periodSeconds: 5
 ---
@@ -51,7 +51,7 @@ spec:
     app: location-service
   ports:
     - port: 80
-      targetPort: 8081
+      targetPort: 8091
   type: ClusterIP
 ---
 # Horizontal Pod Autoscaler

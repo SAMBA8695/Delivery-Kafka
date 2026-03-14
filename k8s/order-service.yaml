@@ -21,7 +21,7 @@ spec:
           image: delivery/order-service:latest
           imagePullPolicy: IfNotPresent   # use local image, don't try to pull
           ports:
-            - containerPort: 8080
+            - containerPort: 8090
           env:
             - name: KAFKA_BROKER
               value: "kafka-service:9092"  # K8s internal DNS for the kafka Service
@@ -35,13 +35,13 @@ spec:
           livenessProbe:       # K8s restarts pod if this fails 3 times
             httpGet:
               path: /health
-              port: 8080
+              port: 8090
             initialDelaySeconds: 5
             periodSeconds: 10
           readinessProbe:      # K8s won't send traffic until this passes
             httpGet:
               path: /health
-              port: 8080
+              port: 8090
             initialDelaySeconds: 3
             periodSeconds: 5
 ---
@@ -54,5 +54,5 @@ spec:
     app: order-service
   ports:
     - port: 80          # external port (what other pods call)
-      targetPort: 8080  # internal port (what the container listens on)
+      targetPort: 8090  # internal port (what the container listens on)
   type: ClusterIP       # internal only; use Ingress to expose externally

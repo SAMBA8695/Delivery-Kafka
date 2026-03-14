@@ -1,6 +1,6 @@
 package main
 
-// Notification Service — port 8082
+// Notification Service — port 8092
 //
 // Routes:
 //   GET /ws?order_id=xxx   WebSocket endpoint — frontend connects here
@@ -24,7 +24,7 @@ import (
 
 	"github.com/gorilla/websocket"
 	kafkago "github.com/segmentio/kafka-go"
-	"github.com/yourusername/delivery-tracker/events"
+	"github.com/SAMBA8695/Delivery-Kafka/events"
 )
 
 var kafkaBroker = getenv("KAFKA_BROKER", "localhost:9092")
@@ -195,6 +195,6 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 	})
 
-	log.Println("notification-service listening on :8082")
-	log.Fatal(http.ListenAndServe(":8082", mux))
+	log.Println("notification-service listening on :8092")
+	log.Fatal(http.ListenAndServe(":8092", mux))
 }

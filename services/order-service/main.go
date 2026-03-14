@@ -1,6 +1,6 @@
 package main
 
-// Order Service — port 8080
+// Order Service — port 8090
 //
 // Routes:
 //   POST   /orders         create order, publish "placed" to Kafka
@@ -19,7 +19,7 @@ import (
 
 	"github.com/google/uuid"
 	kafkago "github.com/segmentio/kafka-go"    // aliased to avoid clash with our /events pkg
-	"github.com/yourusername/delivery-tracker/events"
+	"github.com/SAMBA8695/Delivery-Kafka/events"
 )
 
 var kafkaBroker = getenv("KAFKA_BROKER", "localhost:9092")
@@ -191,6 +191,6 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 	})
 
-	log.Println("order-service listening on :8080")
-	log.Fatal(http.ListenAndServe(":8080", mux))
+	log.Println("order-service listening on :8090")
+	log.Fatal(http.ListenAndServe(":8090", mux))
 }

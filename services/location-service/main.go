@@ -1,6 +1,6 @@
 package main
 
-// Location Service — port 8081
+// Location Service — port 8091
 //
 // Routes:
 //   POST  /ping     receive GPS ping from delivery agent, publish to Kafka
@@ -19,7 +19,7 @@ import (
 
 	"github.com/google/uuid"
 	kafkago "github.com/segmentio/kafka-go"
-	"github.com/yourusername/delivery-tracker/events"
+	"github.com/SAMBA8695/Delivery-Kafka/events"
 )
 
 var kafkaBroker   = getenv("KAFKA_BROKER", "localhost:9092")
@@ -111,6 +111,6 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 	})
 
-	log.Println("location-service listening on :8081")
-	log.Fatal(http.ListenAndServe(":8081", mux))
+	log.Println("location-service listening on :8091")
+	log.Fatal(http.ListenAndServe(":8091", mux))
 }

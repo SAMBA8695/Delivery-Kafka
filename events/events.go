@@ -1,8 +1,8 @@
 // Package events defines the shared Kafka message schemas used by all services.
-// Import path: github.com/yourusername/delivery-tracker/events
+// Import path: github.com/SAMBA8695/Delivery-Kafka/events
 //
 // Import it as:
-//   import "github.com/yourusername/delivery-tracker/events"
+//   import "github.com/SAMBA8695/Delivery-Kafka/events"
 // Then use: events.OrderEvent{...}  events.LocationEvent{...}
 package events
 
