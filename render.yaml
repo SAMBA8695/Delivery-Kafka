@@ -1,0 +1,40 @@
+services:
+  # Redpanda runs as a worker (background process, no HTTP port needed)
+  - type: worker
+    name: redpanda
+    region: singapore
+    plan: free
+    runtime: docker
+    dockerfilePath: ./docker/Dockerfile.redpanda
+
+  # order-service is the only public-facing HTTP API
+  - type: web
+    name: order-service
+    region: singapore
+    plan: free
+    runtime: docker
+    dockerfilePath: ./docker/Dockerfile.order
+    envVars:
+      - key: KAFKA_BROKER
+        value: redpanda:9092
+
+  # location + notification are background workers (no public HTTP needed)
+  - type: worker
+    name: location-service
+    region: singapore
+    plan: free
+    runtime: docker
+    dockerfilePath: ./docker/Dockerfile.location
+    envVars:
+      - key: KAFKA_BROKER
+        value: redpanda:9092
+
+  - type: worker
+    name: notification-service
+    region: singapore
+    plan: free
+    runtime: docker
+    dockerfilePath: ./docker/Dockerfile.notification
+    envVars:
+      - key: KAFKA_BROKER
+        value: redpanda:9092
